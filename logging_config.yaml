@@ -1,0 +1,42 @@
+version: 1
+disable_existing_loggers: no
+
+formatters:
+    simple:
+        (): colorlog.ColoredFormatter
+        format: >-
+            {thin_white}{asctime}{reset} {bold}{log_color}{levelname}{reset}
+            ({bold}{blue}{filename}{reset}:{purple}{lineno}{reset}) {message}
+        style: "{"
+        datefmt: "%Y-%m-%d %H:%M:%S"
+        log_colors:
+            DEBUG: cyan
+            INFO: green
+            WARNING: yellow
+            ERROR: red
+            CRITICAL: bold_red,bg_white
+    verbose:
+        (): colorlog.ColoredFormatter
+        format: >-
+            {thin_white}{asctime}{reset} {bold}{log_color}{levelname}{reset} ({thin_green}{name}{reset} in
+            {bold}{blue}{filename}{reset}:{purple}{lineno}{reset}#{cyan}{funcName}{reset}) {message}
+        style: "{"
+        datefmt: "%Y-%m-%d %H:%M:%S"
+        log_colors:
+            DEBUG: cyan
+            INFO: green
+            WARNING: yellow
+            ERROR: red
+            CRITICAL: bold_red,bg_white
+
+handlers:
+    console:
+        class: logging.StreamHandler
+        level: DEBUG
+        formatter: verbose
+        stream: ext://sys.stdout
+
+loggers:
+    root:
+        level: DEBUG
+        handlers: [console]
