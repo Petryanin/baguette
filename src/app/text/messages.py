@@ -41,7 +41,7 @@ HELP = """
 Обратная связь: @petryanin
 """
 
-CURRENT_SETTINGS = """
+CURRENT_SETTINGS = r"""
 *Твои текущие настройки:*
 
  \- часовой пояс: *{}*

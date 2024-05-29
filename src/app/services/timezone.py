@@ -82,7 +82,7 @@ def get_pretty_tz_and_time(timezone_data: dict) -> tuple[str, str]:
     gmt_offset = timezone_data["gmtOffset"]
     time = timezone_data["time"]
 
-    pretty_tz = f"{tz_id} \({"\+" if gmt_offset >= 0 else "\-"}{gmt_offset}\)"
+    pretty_tz = rf"{tz_id} \({r"\+" if gmt_offset >= 0 else r"\-"}{gmt_offset}\)"
     pretty_time = f"{time.split(" ")[-1]}"
 
     return pretty_tz, pretty_time
