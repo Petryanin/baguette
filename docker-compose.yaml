@@ -6,8 +6,7 @@ services:
     container_name: bot
     restart: always
     ports:
-      # debug adapter
-      - 5678:5678
+      - ${DEBUG_PORT}:5678
     depends_on:
       - mongo
     volumes:
@@ -22,13 +21,15 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
       - MONGO_INITDB_DATABASE=${MONGO_DATABASE}
     ports:
-      - 27017:${MONGO_PORT}
+      - ${MONGO_PORT}:27017
     volumes:
-      - ./var/mongo_data:/data/db
+      - ./var/mongo/data:/data/db
+      - ./var/mongo/mongod.conf:/etc/mongo/mongod.conf:ro
+    command: --config /etc/mongo/mongod.conf
 
   duckling:
     image: rasa/duckling
     container_name: duckling
     restart: always
     ports:
-      - 8000:8000
+      - ${DUCKLING_PORT}:8000

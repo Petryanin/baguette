@@ -30,7 +30,11 @@ class Settings(BaseSettings):
     duckling_host: str
     duckling_port: str
 
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
 
 
 def get_logging_config(config_path: str) -> dict[str, Any]:
